@@ -1,0 +1,80 @@
+﻿    <Window xmlns:taskify="clr-namespace:taskify"  x:Class="M120Projekt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:M120Projekt"
+        mc:Ignorable="d"
+        Title="taskify ✔" Height="800" Width="1400"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Name="taskify">
+    
+    
+    <Grid Name="canvasGrid">
+
+        <Border Background="White"
+                CornerRadius="10"
+                Name="TaskifyCanvas">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="285*"/>
+                    <ColumnDefinition Width="558*"/>
+                    <ColumnDefinition Width="557*"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="DragBar" 
+                        Height="20"
+                        CornerRadius="10"
+                        Background="White"
+                        VerticalAlignment="Top"
+                        MouseLeftButtonDown="DragBar_MouseLeftButtonDown" Grid.ColumnSpan="3">
+                    <Button Width="10" Height="10" Margin="0,10,10,0" HorizontalAlignment="Right" Click="Terminate" Background="Transparent" BorderThickness="0">
+                        <Image Source="./Properties/close-button.png" Name="closebutton"></Image>
+                    </Button>
+                </Border>
+                <Label Content="taskify" Grid.Column="0" Grid.Row="0" Height="60" HorizontalAlignment="Center" FontSize="45" FontFamily="Bahnschrift" FontWeight="Bold" Margin="56,58,86,682"/>
+                <Grid Margin="-10,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="200*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- NAVIGATION -->
+                    <!-- Inbox Nav -->
+                    <Image Source="./Properties/inbox.png" Grid.Column="1" Margin="0,300,0,469" Height="15" Name="inboxbutton"></Image>
+                    <Button Content="Inbox" Background="Transparent" BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="15" Grid.Column="2" HorizontalAlignment="Left" Height="26" Width="45" Margin="0,300,0,469"></Button>
+
+                    <!-- Settings Nav -->
+                    <Image Source="./Properties/settings.png" Grid.Column="1" Margin="0,400,0,385" Height="15" Name="settingsbutton"></Image>
+                    <Button Content="Settings" Background="Transparent" BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="15" Grid.Column="2" HorizontalAlignment="Left" Height="26" Width="60" Margin="0,394,0,380"></Button>
+
+                    <!-- Nightmode Nav -->
+                    <Image Grid.Column="1" Margin="0,734,0,51" Height="15" Name="nightmodebutton"></Image>
+                    <Button Content="Darkmode" Click="dmButton_Click" Background="Transparent" BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="15" Grid.Column="2" HorizontalAlignment="Left" Height="26" Width="76" Margin="0,728,0,46"></Button>
+                </Grid>
+                <!-- TASKLIST -->
+
+                <!-- Title -->
+                <Label Content="Today" Grid.Column="1" VerticalAlignment="Top"  HorizontalContentAlignment="Center" FontSize="30" Margin="0,70,0,0" FontWeight="Bold" FontFamily="Bahnschrift"/>
+                <!-- Welcome Message -->
+                <Label Content="Welcome back, Nils! See what's up for today." Grid.Column="1" HorizontalAlignment="Center" FontSize="20" Margin="0,110,0,0"/>
+                <!-- Add task -->
+                <Button Content="+ Add Task" Grid.Column="1" Margin="0,160,60,610" HorizontalAlignment="Right" Foreground="Blue" Height="30" Background="Transparent" BorderThickness="0" Click="AddTask_Click"/>
+
+                <ListBox x:Name="taskList" Grid.Column="1" Background="Transparent" HorizontalAlignment="Left" Margin="80,225,0,50" Height="Auto" Width="401" BorderThickness="0">
+
+                </ListBox>
+
+                <!-- PARTIAL BOX RIGHT -->
+                
+                <Image Grid.Column="2" gif:ImageBehavior.AnimatedSource="./Properties/focus-animation.gif" Height="300" />
+                <Label Content="Stay mindful &amp; productive throughout the day." Foreground="Gray" FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Center" FontSize="20" Margin="0,560,0,0"/>
+                <taskify:SmallPartial Margin="50" x:Name="smallPartial" Grid.Column="2" Visibility="Hidden" />
+                <!-- BIG PARTIAL -->
+                <taskify:BigPartial x:Name="bigPartial" Grid.ColumnSpan="3" Visibility="Hidden" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
